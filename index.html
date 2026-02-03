@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Reddit Sentiment Analysis</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; padding: 30px; }
+    input, button { padding: 10px; }
+    .card { background: white; padding: 15px; margin: 10px 0; border-radius: 6px; }
+    .Positive { color: green; }
+    .Negative { color: red; }
+    .Neutral { color: gray; }
+  </style>
+</head>
+<body>
+
+<h1>Live Reddit Sentiment Analysis</h1>
+
+<input id="subreddit" placeholder="Enter subreddit" value="technology">
+<button onclick="loadData()">Analyze</button>
+
+<div id="results"></div>
+
+<script>
+async function loadData() {
+  const subreddit = document.getElementById("subreddit").value;
+  const res = await fetch(`http://127.0.0.1:8000/analyze?subreddit=${subreddit}`);
+  const data = await res.json();
+
+  const container = document.getElementById("results");
+  container.innerHTML = "";
+
+  data.data.forEach(post => {
+    container.innerHTML += `
+      <div class="card">
+        <h3>${post.title}</h3>
+        <p class="${post.sentiment}">Sentiment: ${post.sentiment}</p>
+        <a href="${post.link}" target="_blank">Open Post</a>
+      </div>
+    `;
+  });
+}
+</script>
+
+</body>
+</html>
