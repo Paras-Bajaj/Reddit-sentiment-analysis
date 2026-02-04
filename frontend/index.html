@@ -13,8 +13,8 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
-    
     <style>
+        
         :root {
             /* Color Palette */
             --primary-50: #f0f9ff;
@@ -1243,24 +1243,12 @@
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', async () => {
-            console.log('Initializing Reddit Pulse Dashboard...');
-            
             try {
-                // Load suggestions
                 await loadSuggestions();
-                
-                // Load initial analysis
                 await loadAnalysis();
-                
-                // Update footer stats
                 updateFooterStats();
-                
-                // Add keyboard shortcuts
                 setupKeyboardShortcuts();
-                
-                console.log('Dashboard initialized successfully');
             } catch (error) {
-                console.error('Initialization error:', error);
                 showError('Failed to initialize dashboard. Please refresh the page.');
             }
         });
@@ -1268,13 +1256,11 @@
         // Setup keyboard shortcuts
         function setupKeyboardShortcuts() {
             document.addEventListener('keydown', (e) => {
-                // Ctrl/Cmd + Enter to analyze
                 if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
                     e.preventDefault();
                     loadAnalysis();
                 }
                 
-                // Escape to close error
                 if (e.key === 'Escape') {
                     hideError();
                 }
@@ -1294,7 +1280,6 @@
                 
                 suggestionsDiv.innerHTML = '';
                 
-                // Show popular subreddits
                 const popularSubreddits = data.subreddits || [
                     'technology', 'python', 'programming', 'science', 'news',
                     'worldnews', 'gaming', 'movies', 'music', 'askscience'
@@ -1313,7 +1298,6 @@
                 });
                 
             } catch (error) {
-                console.warn('Could not load suggestions:', error);
                 // Don't show error for suggestions
             }
         }
@@ -1330,13 +1314,11 @@
                 return;
             }
             
-            // Show loading state
             showLoading(true);
             analyzeBtn.disabled = true;
             analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
             document.getElementById('loadingSubreddit').textContent = `r/${subreddit}`;
             
-            // Hide previous results and error
             hideError();
             ['summaryCard', 'chartCard', 'postsCard'].forEach(id => {
                 const el = document.getElementById(id);
@@ -1346,7 +1328,6 @@
             try {
                 const startTime = performance.now();
                 
-                // Make API request
                 const response = await fetch(
                     `${API_BASE_URL}/analyze?subreddit=${encodeURIComponent(subreddit)}&limit=${limit}&detailed=${detailed}`
                 );
@@ -1368,12 +1349,10 @@
                 currentAnalysis = data;
                 totalAnalyses++;
                 
-                // Update UI
                 updateSummary(data);
                 updateChart(data);
                 updatePosts(data.data);
                 
-                // Show cards with animation
                 ['summaryCard', 'chartCard', 'postsCard'].forEach(id => {
                     const el = document.getElementById(id);
                     if (el) {
@@ -1382,16 +1361,10 @@
                     }
                 });
                 
-                // Update response time
                 document.getElementById('footerResponseTime').textContent = `${Math.round(responseTime)}ms`;
-                
-                // Update total analyses
                 document.getElementById('footerTotalAnalyses').textContent = totalAnalyses;
                 
-                console.log('Analysis completed:', data);
-                
             } catch (error) {
-                console.error('Analysis error:', error);
                 showError(error.message);
             } finally {
                 showLoading(false);
@@ -1439,7 +1412,6 @@
             const summary = data.summary || {};
             const percentages = data.summary_percentage || {};
             
-            // Calculate average sentiment
             let totalScore = 0;
             let postCount = 0;
             if (data.data && Array.isArray(data.data)) {
@@ -1450,7 +1422,6 @@
             }
             const avgSentiment = postCount > 0 ? (totalScore / postCount).toFixed(3) : '0.000';
             
-            // Update footer
             document.getElementById('footerAvgSentiment').textContent = avgSentiment;
             
             const statsHtml = `
@@ -1497,7 +1468,6 @@
             
             const ctx = canvas.getContext('2d');
             
-            // Destroy existing chart
             if (sentimentChart) {
                 sentimentChart.destroy();
             }
@@ -1507,7 +1477,6 @@
             const values = labels.map(label => summary[label]);
             
             if (labels.length === 0) {
-                // Show empty state
                 canvas.parentElement.innerHTML = `
                     <div class="empty-state">
                         <i class="fas fa-chart-pie empty-icon"></i>
@@ -1518,7 +1487,6 @@
                 return;
             }
             
-            // Color mapping
             const colorMap = {
                 'Positive': 'rgba(16, 185, 129, 0.8)',
                 'Negative': 'rgba(239, 68, 68, 0.8)',
@@ -1530,62 +1498,58 @@
             const backgroundColors = labels.map(label => colorMap[label] || '#6b7280');
             const borderColors = backgroundColors.map(color => color.replace('0.8', '1').replace('0.9', '1'));
             
-            try {
-                sentimentChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            data: values,
-                            backgroundColor: backgroundColors,
-                            borderColor: borderColors,
-                            borderWidth: 2,
-                            hoverOffset: 15
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'right',
-                                labels: {
-                                    padding: 20,
-                                    usePointStyle: true,
-                                    font: {
-                                        size: 12,
-                                        family: "'Inter', sans-serif"
-                                    },
-                                    color: 'var(--text-primary)'
-                                }
-                            },
-                            tooltip: {
-                                backgroundColor: 'var(--card-bg)',
-                                titleColor: 'var(--text-primary)',
-                                bodyColor: 'var(--text-secondary)',
-                                borderColor: 'var(--gray-300)',
-                                borderWidth: 1,
-                                callbacks: {
-                                    label: function(context) {
-                                        const label = context.label || '';
-                                        const value = context.raw || 0;
-                                        const percentage = Math.round((value / data.count) * 100);
-                                        return `${label}: ${value} posts (${percentage}%)`;
-                                    }
-                                }
+            sentimentChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: backgroundColors,
+                        borderColor: borderColors,
+                        borderWidth: 2,
+                        hoverOffset: 15
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                font: {
+                                    size: 12,
+                                    family: "'Inter', sans-serif"
+                                },
+                                color: 'var(--text-primary)'
                             }
                         },
-                        cutout: '70%',
-                        animation: {
-                            animateScale: true,
-                            animateRotate: true,
-                            duration: 1000
+                        tooltip: {
+                            backgroundColor: 'var(--card-bg)',
+                            titleColor: 'var(--text-primary)',
+                            bodyColor: 'var(--text-secondary)',
+                            borderColor: 'var(--gray-300)',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const percentage = Math.round((value / data.count) * 100);
+                                    return `${label}: ${value} posts (${percentage}%)`;
+                                }
+                            }
                         }
+                    },
+                    cutout: '70%',
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true,
+                        duration: 1000
                     }
-                });
-            } catch (error) {
-                console.error('Chart error:', error);
-            }
+                }
+            });
         }
 
         // Update posts display
@@ -1607,7 +1571,7 @@
             let postsHTML = '';
             
             posts.forEach((post, index) => {
-                if (index >= 20) return; // Limit display
+                if (index >= 20) return;
                 
                 const sentiment = post.sentiment || 'Neutral';
                 const sentimentClass = sentiment.toLowerCase().replace(/ /g, '-');
@@ -1674,7 +1638,6 @@
         function filterPosts(sentiment) {
             currentFilter = sentiment;
             
-            // Update filter buttons
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.textContent.includes(sentiment) || 
@@ -1683,7 +1646,6 @@
                 }
             });
             
-            // Filter posts
             const posts = document.querySelectorAll('.post-card');
             posts.forEach(post => {
                 if (sentiment === 'all' || post.dataset.sentiment === sentiment) {
@@ -1710,8 +1672,6 @@
 
         // Update footer statistics
         function updateFooterStats() {
-            // These would be populated from API/storage in a real implementation
-            // For now, we'll update from current analysis
             if (currentAnalysis) {
                 let totalScore = 0;
                 let postCount = 0;
@@ -1727,7 +1687,7 @@
             }
         }
 
-        // Export data (placeholder)
+        // Export data
         function exportData() {
             if (!currentAnalysis) {
                 showError('No analysis data to export');
@@ -1746,7 +1706,6 @@
                 linkElement.click();
                 document.body.removeChild(linkElement);
                 
-                // Show success feedback
                 const exportBtn = document.getElementById('exportBtn');
                 const originalHTML = exportBtn.innerHTML;
                 exportBtn.innerHTML = '<i class="fas fa-check"></i> Exported!';
