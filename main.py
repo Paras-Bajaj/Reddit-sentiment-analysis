@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse
-from fastapi.staticfiles import StaticFiles  # ADD THIS IMPORT
+from fastapi.staticfiles import StaticFiles
 import feedparser
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from typing import List, Dict, Optional, Any
@@ -9,22 +9,15 @@ from datetime import datetime
 import logging
 from contextlib import asynccontextmanager
 import os
-import csv
-import pandas as pd
 from pydantic import BaseModel, Field
 import uvicorn
 from dotenv import load_dotenv
-import json
 import aiohttp
-import aiofiles
 import uuid
-import hashlib
 import time
 from pydantic import field_validator
 from enum import Enum
-import shutil
 import traceback
-
 # Load environment variables
 load_dotenv()
 
