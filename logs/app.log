@@ -1,0 +1,235 @@
+2026-02-04 09:48:10,699 - main - ERROR - main:1105 - Unhandled exception: name 'HTMLResponse' is not defined
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\HP\OneDrive\Desktop\New folder\reddit\main.py", line 617, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\gzip.py", line 130, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\HP\OneDrive\Desktop\New folder\reddit\main.py", line 1072, in serve_frontend
+    return HTMLResponse(content=html_content)
+           ^^^^^^^^^^^^
+NameError: name 'HTMLResponse' is not defined. Did you mean: 'JSONResponse'?
+2026-02-04 09:48:54,240 - main - ERROR - main:1105 - Unhandled exception: name 'HTMLResponse' is not defined
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\HP\OneDrive\Desktop\New folder\reddit\main.py", line 617, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\gzip.py", line 130, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\HP\OneDrive\Desktop\New folder\reddit\main.py", line 1072, in serve_frontend
+    return HTMLResponse(content=html_content)
+           ^^^^^^^^^^^^
+NameError: name 'HTMLResponse' is not defined. Did you mean: 'JSONResponse'?
+2026-02-04 09:48:56,185 - main - INFO - main:621 - Request GET /favicon.ico
+2026-02-04 09:51:07,219 - main - ERROR - main:1105 - Unhandled exception: name 'HTMLResponse' is not defined
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\HP\OneDrive\Desktop\New folder\reddit\main.py", line 617, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\gzip.py", line 130, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\HP\OneDrive\Desktop\New folder\reddit\main.py", line 1072, in serve_frontend
+    return HTMLResponse(content=html_content)
+           ^^^^^^^^^^^^
+NameError: name 'HTMLResponse' is not defined. Did you mean: 'JSONResponse'?
+2026-02-04 09:51:55,416 - main - INFO - main:496 - Starting Reddit Sentiment Analysis API v2.0
+2026-02-04 09:51:55,417 - main - INFO - main:506 - API startup complete
+2026-02-04 09:52:01,485 - main - INFO - main:496 - Starting Reddit Sentiment Analysis API v2.0
+2026-02-04 09:52:01,486 - main - INFO - main:506 - API startup complete
+2026-02-04 09:52:05,133 - main - INFO - main:511 - Shutting down API...
+2026-02-04 09:52:10,316 - main - INFO - main:496 - Starting Reddit Sentiment Analysis API v2.0
+2026-02-04 09:52:10,317 - main - INFO - main:506 - API startup complete
+2026-02-04 09:52:53,046 - main - INFO - main:511 - Shutting down API...
+2026-02-04 09:52:53,047 - main - INFO - main:517 - Shutdown complete
+2026-02-04 09:52:57,816 - main - INFO - main:497 - Starting Reddit Sentiment Analysis API v2.0
+2026-02-04 09:52:57,817 - main - INFO - main:507 - API startup complete
+2026-02-04 09:53:05,612 - main - INFO - main:622 - Request GET /
+2026-02-04 09:53:06,554 - main - INFO - main:622 - Request GET /localhost:8000/api/stats
+2026-02-04 09:53:07,420 - main - INFO - main:622 - Request GET /localhost:8000/api/supported-subreddits
+2026-02-04 09:53:07,655 - main - INFO - main:622 - Request GET /static/favicon.ico
+2026-02-04 09:53:07,688 - main - INFO - main:622 - Request GET /localhost:8000/api/analyze
+2026-02-04 09:53:26,823 - main - INFO - main:622 - Request GET /localhost:8000/api/analyze
+2026-02-04 09:53:30,063 - main - INFO - main:622 - Request GET /.well-known/appspecific/com.chrome.devtools.json
+2026-02-04 09:59:29,327 - main - INFO - main:622 - Request GET /
+2026-02-04 09:59:29,444 - main - INFO - main:622 - Request GET /.well-known/appspecific/com.chrome.devtools.json
+2026-02-04 09:59:30,105 - main - INFO - main:622 - Request GET /localhost:8000/api/supported-subreddits
+2026-02-04 09:59:30,198 - main - INFO - main:622 - Request GET /localhost:8000/api/analyze
+2026-02-04 10:05:57,501 - main - INFO - main:512 - Shutting down API...
+2026-02-04 10:05:57,502 - main - INFO - main:518 - Shutdown complete
