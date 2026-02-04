@@ -348,11 +348,17 @@ async def generic_exception_handler(request, exc: Exception):
         }
     )
 # Add this to the end of your main.py file:
+# Add this at the very end of your main.py file:
+
 if __name__ == "__main__":
+    # For Railway deployment
+    import os
     port = int(os.environ.get("PORT", 8000))
+    
     uvicorn.run(
-        app,
+        "main:app",  # Note: string format for Railway
         host="0.0.0.0",
         port=port,
-        reload=False
+        reload=False,
+        workers=1  # Single worker for Railway's free tier
     )
