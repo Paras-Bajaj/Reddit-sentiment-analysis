@@ -4,3 +4,4 @@ feedparser==6.0.10
 vaderSentiment==3.3.2
 aiohttp==3.9.1
 python-dotenv==1.0.0
+pydantic==2.5.0
