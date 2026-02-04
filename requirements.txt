@@ -1,3 +1,4 @@
+# Update requirements.txt to include pandas:
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 feedparser==6.0.10
@@ -5,3 +6,4 @@ vaderSentiment==3.3.2
 aiohttp==3.9.1
 python-dotenv==1.0.0
 pydantic==2.5.0
+pandas==2.1.4  # ADD THIS LINE
