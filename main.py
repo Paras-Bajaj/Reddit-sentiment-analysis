@@ -347,11 +347,12 @@ async def generic_exception_handler(request, exc: Exception):
             "timestamp": datetime.utcnow().isoformat()
         }
     )
-
+# Add this to the end of your main.py file:
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
     uvicorn.run(
         app,
         host="0.0.0.0",
-        port=8000,
+        port=port,
         reload=False
     )
